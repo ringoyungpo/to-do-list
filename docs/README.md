@@ -35,13 +35,17 @@ rectangle 代办事项 {
 用户 -- (查看所有代办事项)
 }
 
+rectangle 授权系统 {
+用户 -- (登录)
+}
+
 rectangle 用户系统 {
 用户 -- (注册)
-用户 -- (登录)
 (获取用户信息)
 }
 
 (查看所有代办事项) .> (获取用户信息): 包括
+(登录) .> (获取用户信息): 包括
 
 @enduml
 
@@ -66,3 +70,6 @@ class Todo {
 Todo "0..*" --* "1" User
 
 @enduml
+
+## 方案
+![微服务](https://miro.medium.com/max/1221/1*Z8HUa8vdvIrF68crSJOPTQ.png)
