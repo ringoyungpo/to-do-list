@@ -71,5 +71,30 @@ Todo "0..*" --* "1" User
 
 @enduml
 
-## 方案
-![微服务](https://miro.medium.com/max/1221/1*Z8HUa8vdvIrF68crSJOPTQ.png)
+### 部署图
+
+@startuml
+left to right direction
+
+cloud client
+cloud gatewayZuul
+cloud serviceRegistryEureka
+cloud loadBalancer
+cloud authService
+cloud configService
+
+node dataService {
+  cloud toDoService
+  cloud userService
+}
+
+client -0)- gatewayZuul
+serviceRegistryEureka -0)- gatewayZuul
+loadBalancer -(0- gatewayZuul
+authService .(0. gatewayZuul
+toDoService -(0)- userService
+toDoService -(0- loadBalancer
+userService -(0- loadBalancer
+configService -0)- dataService
+
+@enduml
